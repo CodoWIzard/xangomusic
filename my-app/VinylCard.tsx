@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Record } from './records';
 import { useCart } from './cart-context';
 
@@ -10,10 +9,6 @@ interface VinylCardProps {
 
 export default function VinylCard({ record }: VinylCardProps) {
   const { dispatch } = useCart();
-
-  const handleAddToCart = () => {
-    dispatch({ type: 'ADD_ITEM', payload: record });
-  };
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-stone-200 overflow-hidden hover:shadow-md transition-shadow">
@@ -33,7 +28,7 @@ export default function VinylCard({ record }: VinylCardProps) {
         <div className="flex items-center justify-between">
           <span className="text-lg font-bold text-stone-900">${record.price}</span>
           <button
-            onClick={handleAddToCart}
+            onClick={() => dispatch({ type: 'ADD_ITEM', payload: record })}
             className="bg-stone-900 text-white px-3 py-1.5 rounded-md text-sm hover:bg-stone-800 transition-colors"
           >
             Add to Cart

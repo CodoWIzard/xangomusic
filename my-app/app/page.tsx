@@ -11,23 +11,17 @@ export default function Home() {
   const [selectedGenre, setSelectedGenre] = useState('All');
   const [selectedCountry, setSelectedCountry] = useState('All');
 
-  const filteredRecords = useMemo(() => {
-    return records.filter(record => {
-      const matchesSearch = 
-        record.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        record.artist.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        record.genre.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesGenre = selectedGenre === 'All' || record.genre === selectedGenre;
-      const matchesCountry = selectedCountry === 'All' || record.country === selectedCountry;
-      
-      return matchesSearch && matchesGenre && matchesCountry;
-    });
-  }, [searchTerm, selectedGenre, selectedCountry]);
+  const filteredRecords = useMemo(() => 
+    records.filter(record => {
+      const searchMatch = [record.title, record.artist, record.genre]
+        .some(field => field.toLowerCase().includes(searchTerm.toLowerCase()));
+      const genreMatch = selectedGenre === 'All' || record.genre === selectedGenre;
+      const countryMatch = selectedCountry === 'All' || record.country === selectedCountry;
+      return searchMatch && genreMatch && countryMatch;
+    }), [searchTerm, selectedGenre, selectedCountry]);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Hero Section */}
       <section className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-stone-900 mb-4">
           Welcome to Vinyl Vault
@@ -38,7 +32,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Facebook Updates Placeholder */}
       <section className="bg-white rounded-lg shadow-sm border border-stone-200 p-6 mb-8">
         <h2 className="text-2xl font-bold text-stone-900 mb-4">Facebook Updates</h2>
         <div className="bg-stone-50 rounded-lg p-8 text-center">
@@ -46,7 +39,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Search and Filters */}
       <section className="mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
@@ -63,7 +55,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Records Catalog */}
       <section>
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-stone-900">Vinyl Collection</h2>
