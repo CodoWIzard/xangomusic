@@ -16,8 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vinyl Vault - Premium Vinyl Records",
-  description: "Discover rare and classic vinyl records from around the world. Curated collection for true music enthusiasts.",
+  title: "Xango Music",
+  description:
+    "Discover rare and classic vinyl records from around the world. Curated collection for true music enthusiasts.",
 };
 
 export default function RootLayout({
