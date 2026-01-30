@@ -28,6 +28,7 @@ export default function Home() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-4xl font-bold text-stone-900 text-center mb-4">Xango Music</h1>
       <section className="text-center mb-12">
         <p className="text-xl text-stone-600 max-w-2xl mx-auto">
           Xango Music covers the need for music from all over the world. This
